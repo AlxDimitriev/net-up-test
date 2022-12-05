@@ -6,5 +6,6 @@ import (
 
 func main() {
 	api := internal.NewGinUsersAPI()
+	api.RegisterUrls()
 	api.Run()
 }
