@@ -7,5 +7,6 @@ import (
 func main() {
 	api := internal.NewGinUsersAPI()
 	api.RegisterUrls()
+	go api.CleanNonActiveUsers()
 	api.Run()
 }
