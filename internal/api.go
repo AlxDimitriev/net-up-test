@@ -68,11 +68,13 @@ func (a *GinUsersAPI) CleanNonActiveUsers() {
 	for {
 		time.Sleep(10*time.Minute)
 		now := time.Now()
+		a.mu.Lock()
 		for ip, since := range a.activeUsers {
 			diff := now.Unix() - since.Unix()
 			if diff > 30*60*60 {
 				delete(a.activeUsers, ip)
 			}
 		}
+		a.mu.Unlock()
 	}
 }
